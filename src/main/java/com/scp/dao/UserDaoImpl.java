@@ -1,17 +1,32 @@
 package com.scp.dao;
 
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.springframework.stereotype.Repository;
 
-import com.scp.Util.HibernateUtil;
-import com.scp.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl {
+	
+	
+	//DriverManagerDataSource ds= new DriverManagerDataSource("jdbc:mysql://localhost:3306/","root","system");
 
+/*	DataSource dataSource;
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}*/
+
+	public SessionFactory factory;
+	
+	
+	
+/*
 	HibernateUtil hibernateUtil;
 	
 	public HibernateUtil getHibernateUtil() {
@@ -22,15 +37,28 @@ public class UserDaoImpl {
 		this.hibernateUtil = hibernateUtil;
 	}
 
+*/	
 	
-	
+	public SessionFactory getFactory() {
+		return factory;
+	}
+
+
+
+	public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}
+
+
+
 	public List getAll() {
-		Session session = new Configuration().configure().buildSessionFactory().openSession();
+		System.out.println(factory);
+		Session session = factory.openSession();
 		List list = session.createQuery("from User").list();
 		session.close();
 		return list;
 	}
-
+/*
 	public boolean deleteById(int id) {
 		Session session = hibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -55,5 +83,5 @@ public class UserDaoImpl {
 		transaction.commit();
 		session.close();
 		return true;
-	}
+	}*/
 }

@@ -5,12 +5,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.scp.dao.UserDaoImpl;
 import com.scp.model.User;
 
-
+@Transactional
 @Service
 public class ServiceImpl 
 {
@@ -26,10 +28,11 @@ public class ServiceImpl
 	
 
 	public List getAll() {
+		System.out.println(daoImpl);
 		
-		return daoImpl.getAll();
+		return  null;//daoImpl.getAll();
 	}
-
+/*
 	public boolean deleteById(int id) {
 
 		return daoImpl.deleteById(id);
@@ -43,5 +46,5 @@ public class ServiceImpl
 	public boolean addUser(User user) {
 		
 		return daoImpl.addUser(user); 
-	}
+	}*/
 }
